@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<form th:action="@{/saveUser}" th:object="${saveUser}" method="post">
+    <div class="container">
+        User Name
+        <input type="text" minlength="6" placeholder="Enter Username" name="userName" required> <br>
+        Password
+        <input type="password" minlength="6" placeholder="Enter Password" name="password" required> <br>
+       <input type="submit" value="Create"/>
+    </div>
+</form>
+
+</body>
+</html>
