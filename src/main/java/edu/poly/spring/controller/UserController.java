@@ -2,23 +2,20 @@ package edu.poly.spring.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import edu.poly.spring.models.User;
 import edu.poly.spring.models.UserDTO;
+import edu.poly.spring.reposirity.UserRepository;
 import edu.poly.spring.sevice.UserSevice;
 
-@RestController
+@Controller
 public class UserController {
 	@Autowired
 	UserSevice userSevice;
@@ -30,11 +27,13 @@ public class UserController {
 		return "welcomePage";
 	}
 	
-//	@RequestMapping("/users")
-//    public List<UserDTO> getUserList() {
-//        return userSevice.getAllUsers();
-//    }
-//	
+	@RequestMapping("/users")
+    public List<UserDTO> getUsersList() {
+        return userSevice.getAllUsers();
+    }
+	
+
+	
 //	@PostMapping("/users")
 //    public String creatUser(@RequestBody User user) {
 //		userSevice.save(user);
@@ -57,10 +56,11 @@ public class UserController {
 //		return userSevice.getUserById(id);
 //	}
 	
-	
-	@GetMapping("/greeting")
-	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-		model.addAttribute("name", name);
-		return "greeting";
-	}
+//	@RequestMapping("/created")
+//	public String objectServletContext(Model model, HttpServletRequest request) {
+//	    //String[] flowers = new String[] {"Rose","Lily", "Tulip", "Carnation", "Hyacinth" }; 
+//	    List<UserDTO> flowers = userSevice.getAllUsers();
+//	    model.addAttribute("flowers", flowers);
+//	    return "createAccount";
+//	}
 }

@@ -17,14 +17,14 @@ public class ValidaterUser {
 	private final int MIN_LENGTH = 6;
 	
 	public boolean isUserExited(String userName) {
-		Optional<User> user = userRepository.findByUserName(userName);
-		return user.isPresent();
+		List<User> user = userRepository.findByUserName(userName);
+		return !user.isEmpty();
 		
 	}
 	
 	public boolean isUserExit(String userName, String password) {
-		List<User> user = userRepository.findUserByUserNameAndPassword(userName, password);		
-		return !user.isEmpty();		
+		Optional<User> user = userRepository.findByUserNameAndPassword(userName, password);		
+		return user.isPresent();		
 	}
 	
 	public boolean isLengthUserNameValid(String userName) {

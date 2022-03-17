@@ -1,10 +1,31 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
-    <title>Getting Started: Serving Web Content</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+  <meta charset="UTF-8" />
+  <title>Variable</title>
 </head>
 <body>
-    <p th:text="'Hello, ' + ${loginUser} + '!'" />
+    <h1>Variable: flower, iter</h1>
+    <table border="1">
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>UserName</th>
+            <th>Addrest</th>
+        </tr>
+        <!--
+             Local Variable: flower
+             Local Variable: iter (Iterator).
+           -->
+        <tr th:each="userList, iter : ${userList}">
+            <td th:utext="${iter.count}">No</td>
+            <td th:utext="${userList.name}">Name</td>
+            <td th:utext="${userList.age}">Age</td>
+            <td th:utext="${userList.userName}">UserName</td>
+            <td th:utext="${userList.addrest}">Addrest</td>
+        </tr>
+       
+    </table> 
 </body>
 </html>
