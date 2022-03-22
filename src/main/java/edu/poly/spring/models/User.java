@@ -7,23 +7,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+
 @Data
 @Entity
 @Table(name = "t_user")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long id;
 	public String name;
-    public Integer age;
-    public String userName;
-    public String password; 
-    public String addrest;
-    public String urlImage;
-    
-    public User() {
-        
-    }
+	public Integer age;
+	public String userName;
+	public String password;
+	public String addrest;
+	public String urlImage;
+
+	public User() {
+
+	}
 
 	public User(Long id, String name, Integer age, String userName, String password, String addrest, String urlImage) {
 		this.id = id;
@@ -133,12 +134,4 @@ public class User {
 		this.urlImage = urlImage;
 	}
 
-	
-	
-	
-    
-    
-    
-    
-    
 }

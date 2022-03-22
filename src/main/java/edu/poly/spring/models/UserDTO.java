@@ -3,12 +3,12 @@ package edu.poly.spring.models;
 public class UserDTO {
 	public Long id;
 	public String name;
-    public Integer age;
-    public String userName;
-    public String addrest;
-    public String urlImage;
-    
-    public UserDTO() {
+	public Integer age;
+	public String userName;
+	public String addrest;
+	public String urlImage;
+
+	public UserDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -105,5 +105,4 @@ public class UserDTO {
 		this.urlImage = urlImage;
 	}
 
-	
 }

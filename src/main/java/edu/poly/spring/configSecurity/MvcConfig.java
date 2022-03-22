@@ -1,4 +1,4 @@
-package edu.poly.spring.controller;
+package edu.poly.spring.configSecurity;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -14,6 +14,5 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/create").setViewName("createAccount");
 		registry.addViewController("/login").setViewName("login");
 	}
-	
 
 }

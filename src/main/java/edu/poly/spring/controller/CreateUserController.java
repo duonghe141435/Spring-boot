@@ -39,21 +39,7 @@ public class CreateUserController {
     public String createUser(@ModelAttribute("create") User saveUser, Model model) {    	
         return userService.createUser(saveUser, model);
     }
-    
-//    
-//    @GetMapping("/login")
-//    public String login(Model model, HttpSession session) {
-//    	//session.removeAttribute("USENAME");
-//        model.addAttribute("loginUser", new User());
-//        return "login";
-//    }
-//    
-//    @RequestMapping(value = "userLogin", method = RequestMethod.POST)
-//    public String loginUser(@ModelAttribute("loginUser") User user, Model model , HttpSession session) {
-//    	
-//	    return userService.login(user, model,session);
-//    }
-    
+
     @GetMapping("/user")
     public String getUser(Model model, HttpSession session) {    
     		List<UserDTO> user = userService.getAllUsers();
@@ -61,9 +47,4 @@ public class CreateUserController {
             return "user";    	
     }
     
-    @GetMapping("logout")
-    	public String logout(HttpSession session) {
-    		session.removeAttribute("USENAME");
-    	return "redirect:/login";
-    }
 }
