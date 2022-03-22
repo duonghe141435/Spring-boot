@@ -5,15 +5,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<form th:action="@{/Userlogin}" th:object="${loginUser}" method="post">
+<form th:action="@{/userLogin}" th:object="${loginUser}" method="post">
     <div class="container">
         User Name
         <input type="text" minlength="6" placeholder="Enter Username" name="userName" required> <br>
         Password
-        <input type="password" minlength="6" placeholder="Enter Password" name="password" required> <br>       
+        <input type="password" minlength="6" placeholder="Enter Password" name="password" required> <br>    
+         
         <input type="submit" value="Login"/>
     </div>
-</form>
+ </form>   
+    
+
 
 </body>
 </html>
