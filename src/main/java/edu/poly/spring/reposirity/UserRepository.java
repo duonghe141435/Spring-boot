@@ -13,14 +13,13 @@ import edu.poly.spring.models.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
-	
+	List<User> findByUserName(String userName); 
+	Optional<User> findByUserNameAndPassword(String userName, String password); 
 
-	Optional<User> findByUserName(String userName); 
-
-	@Query(value = "SELECT * FROM Users u WHERE u.user_name = :user_name and u.password = :password", 
-			  nativeQuery = true)
-			List<User> findUserByUserNameAndPassword(
-			  @Param("user_name") String user_name, @Param("password") String password);
+//	@Query(value = "SELECT * FROM Users u WHERE u.user_name = :user_name and u.password = :password", 
+//			  nativeQuery = true)
+//			List<User> findUserByUserNameAndPassword(
+//			  @Param("user_name") String user_name, @Param("password") String password);
 }
 
 

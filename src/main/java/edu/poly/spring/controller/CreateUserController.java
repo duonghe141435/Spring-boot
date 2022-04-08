@@ -1,6 +1,9 @@
 package edu.poly.spring.controller;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,16 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.thymeleaf.util.Validate;
 
 import edu.poly.spring.models.User;
-import edu.poly.spring.reposirity.UserRepository;
+import edu.poly.spring.models.UserDTO;
 import edu.poly.spring.sevice.UserSevice;
-import edu.poly.spring.validate.ValidaterUser;
 
 
 
@@ -31,35 +30,26 @@ public class CreateUserController {
 	
     @GetMapping("/create")
     public String create(Model model) {
+    	List<UserDTO> users = userService.getAllUsers();
+	    model.addAttribute("users", users);
         model.addAttribute("saveUser", new User());
         return "createAccount";
     }
 
-    @RequestMapping(value = "saveUser", method = RequestMethod.POST)
-    public ResponseEntity<String> createUser(@ModelAttribute("saveUser") User saveUser) {
-        return userService.createUser(saveUser);
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    public String createUser(@ModelAttribute("create") User saveUser, Model model) {    	
+        return userService.createUser(saveUser, model);
     }
+    
     
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("loginUser", new User());
         return "login";
     }
-//    
-//    @RequestMapping(value = "loginUser", method = RequestMethod.POST)
-//    public ResponseEntity<String> loginUser(@ModelAttribute("loginUser") User user) {
-//        return userService.login(user);
-//    }   
     
-    @RequestMapping(value = "loginUser", method = RequestMethod.POST)
-    public String loginUser(@ModelAttribute("loginUser") User user) {
-//	   
-//	    if (validaterUser.isUserExit(userName, password)==true) {
-//	        return "user";
-//	    }
-//	    if (!validaterUser.isLengthUserNameValid(userName)==true && !validaterUser.isLengthUserNameValid(password)==true) {
-//	        return "login";
-//	    }
-	    	return userService.login(user);
+    @RequestMapping(value = "Userlogin", method = RequestMethod.POST)
+    public String loginUser(@ModelAttribute("loginUser") User user, Model model) {    	
+	    return userService.login(user, model);
     }
 }

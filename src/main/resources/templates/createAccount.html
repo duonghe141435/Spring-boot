@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<form th:action="@{/saveUser}" th:object="${saveUser}" method="post">
+<form th:action="@{/create}" th:object="${saveUser}" method="post">
     <div class="container">
         User Name
         <input type="text" minlength="6" placeholder="Enter Username" name="userName" required> <br>
@@ -14,6 +14,27 @@
        <input type="submit" value="Create"/>
     </div>
 </form>
+
+<table border="1">
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>UserName</th>
+            <th>Addrest</th>
+        </tr>
+        <!--
+             Local Variable: flower
+             Local Variable: iter (Iterator).
+           -->
+        <tr th:each="users, iter : ${users}">
+            <td th:utext="${iter.count}">No</td>
+            <td th:utext="${users.name}">Name</td>
+            <td th:utext="${users.age}">Age</td>
+            <td th:utext="${users.userName}">UserName</td>
+            <td th:utext="${users.addrest}">Addrest</td>
+        </tr>
+    </table> 
 
 </body>
 </html>
