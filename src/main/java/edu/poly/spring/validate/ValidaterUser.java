@@ -13,24 +13,24 @@ import edu.poly.spring.reposirity.UserRepository;
 public class ValidaterUser {
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	private final int MIN_LENGTH = 6;
-	
+
 	public boolean isUserExited(String userName) {
 		List<User> user = userRepository.findByUserName(userName);
 		return !user.isEmpty();
-		
+
 	}
-	
+
 	public boolean isUserExit(String userName, String password) {
-		Optional<User> user = userRepository.findByUserNameAndPassword(userName, password);		
-		return user.isPresent();		
+		Optional<User> user = userRepository.findByUserNameAndPassword(userName, password);
+		return user.isPresent();
 	}
-	
+
 	public boolean isLengthUserNameValid(String userName) {
-		if(userName == null) {
+		if (userName == null) {
 			return false;
 		}
-		return userName.length() >=MIN_LENGTH;		
+		return userName.length() >= MIN_LENGTH;
 	}
 }
