@@ -1,13 +1,9 @@
 package edu.poly.spring.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,10 +26,13 @@ public class CreateUserController {
 	
     @GetMapping("/create")
     public String create(Model model) {
-    	List<UserDTO> users = userService.getAllUsers();
-	    model.addAttribute("users", users);
-        model.addAttribute("saveUser", new User());
-        return "createAccount";
+    	
+    		List<UserDTO> users = userService.getAllUsers();
+    	    model.addAttribute("users", users);
+            model.addAttribute("saveUser", new User());
+            return "createAccount";
+    	
+    	
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
@@ -41,15 +40,30 @@ public class CreateUserController {
         return userService.createUser(saveUser, model);
     }
     
+//    
+//    @GetMapping("/login")
+//    public String login(Model model, HttpSession session) {
+//    	//session.removeAttribute("USENAME");
+//        model.addAttribute("loginUser", new User());
+//        return "login";
+//    }
+//    
+//    @RequestMapping(value = "userLogin", method = RequestMethod.POST)
+//    public String loginUser(@ModelAttribute("loginUser") User user, Model model , HttpSession session) {
+//    	
+//	    return userService.login(user, model,session);
+//    }
     
-    @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("loginUser", new User());
-        return "login";
+    @GetMapping("/user")
+    public String getUser(Model model, HttpSession session) {    
+    		List<UserDTO> user = userService.getAllUsers();
+    	    model.addAttribute("user", user);
+            return "user";    	
     }
     
-    @RequestMapping(value = "Userlogin", method = RequestMethod.POST)
-    public String loginUser(@ModelAttribute("loginUser") User user, Model model) {    	
-	    return userService.login(user, model);
+    @GetMapping("logout")
+    	public String logout(HttpSession session) {
+    		session.removeAttribute("USENAME");
+    	return "redirect:/login";
     }
 }

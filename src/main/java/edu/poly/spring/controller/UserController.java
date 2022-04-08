@@ -21,11 +21,11 @@ public class UserController {
 	UserSevice userSevice;
 	User users;
 	
-	@RequestMapping("/")
-	public String viewHome() {
-
-		return "welcomePage";
-	}
+//	@RequestMapping("/")
+//	public String viewHome() {
+//
+//		return "home";
+//	}
 	
 	@RequestMapping("/users")
     public List<UserDTO> getUsersList() {

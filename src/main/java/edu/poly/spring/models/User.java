@@ -132,6 +132,8 @@ public class User {
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
+
+	
 	
 	
     

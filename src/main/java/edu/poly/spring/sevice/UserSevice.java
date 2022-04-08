@@ -1,15 +1,10 @@
 package edu.poly.spring.sevice;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-
 import edu.poly.spring.models.User;
 import edu.poly.spring.models.UserDTO;
 import edu.poly.spring.reposirity.UserRepository;
@@ -125,14 +120,16 @@ public class UserSevice {
 //        return new ResponseEntity<>("Login Success", HttpStatus.OK);
 //    }
     
-    public String login(User user, Model model) {
+    public String login(User user, Model model, HttpSession session) {
         String userName = user.getUserName();
         String password = user.getPassword();
         if (!validateUser.isUserExit(userName, password)) {
+        	model.addAttribute("Err", "UserName or password not exist");
             return "login";
         }
-        List<UserDTO> userList = getAllUsers();
+//        session.setAttribute("USENAME", userName);
+        List<UserDTO> userList = getUser(userName);
         model.addAttribute("user", userList);
-        return "user";
+        return "user1";
     }
 }
